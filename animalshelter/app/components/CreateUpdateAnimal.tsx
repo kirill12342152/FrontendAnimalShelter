@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import TextArea from "antd/es/input/TextArea";
 import { Switch } from "antd";
 
+
 interface Props {
     mode: Mode;
     values: Animal;
@@ -14,7 +15,7 @@ interface Props {
     handleUpdate: (id: string, request: AnimalRequest) => void;
 }
 
-export enum Mode{
+export enum Mode {
     Create,
     Edit,
 }
@@ -37,6 +38,8 @@ export const CreateUpdaeteAnimal = ({
     const [weight, setWeight] = useState<number>(1);
     const [photos, setPhotos] = useState<string>("");
     const [animalStatusId, setAnimalStatusId] = useState<string>("");
+
+    
 
     useEffect(() => {
         setName(values.name);
@@ -62,29 +65,29 @@ export const CreateUpdaeteAnimal = ({
             photos,
             animalStatusId
         };
-        mode == Mode.Create 
-            ? handleCreate(animalRequest) 
+        mode == Mode.Create
+            ? handleCreate(animalRequest)
             : handleUpdate(values.id, animalRequest)
     };
 
     return (
-        <Modal 
+        <Modal
             title={
                 mode === Mode.Create ? "Добавить животное" : "Редактировать животное"
-            } 
-            open={isModalOpen} 
+            }
+            open={isModalOpen}
             onOk={handleOnOk}
             onCancel={handleCancel}
             cancelText={"Отмена"}
         >
             <div className="animal__modal">
-                <Input 
+                <Input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Имя животного"
                 />
 
-                <Input 
+                <Input
                     value={animalViewId}
                     onChange={(e) => setAnimalViewId(e.target.value)}
                     placeholder="Айди вида животного"
@@ -97,13 +100,13 @@ export const CreateUpdaeteAnimal = ({
                     unCheckedChildren="Самка"
                 />
 
-                <Input 
+                <Input
                     value={age}
                     onChange={(e) => setAge(Number(e.target.value))}
                     placeholder="Возраст животного"
                 />
 
-                <Input 
+                <Input
                     value={animalBreedId}
                     onChange={(e) => setAnimalBreedId(e.target.value)}
                     placeholder="Айди породы животного"
@@ -112,23 +115,23 @@ export const CreateUpdaeteAnimal = ({
                 <TextArea
                     value={distinctiveFeatures}
                     onChange={(e) => setDistinctiveFeatures(e.target.value)}
-                    autoSize={{minRows: 2, maxRows: 3}}
+                    autoSize={{ minRows: 2, maxRows: 3 }}
                     placeholder="Особенности и приметы"
                 />
 
-                <Input 
+                <Input
                     value={weight}
                     onChange={(e) => setWeight(Number(e.target.value))}
                     placeholder="Вес животного"
                 />
 
-                <Input 
+                <Input
                     value={photos}
                     onChange={(e) => setPhotos(e.target.value)}
                     placeholder="Фото животного"
                 />
 
-                <Input 
+                <Input
                     value={animalStatusId}
                     onChange={(e) => setAnimalStatusId(e.target.value)}
                     placeholder="Айди статуса животного"

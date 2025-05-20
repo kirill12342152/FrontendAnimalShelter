@@ -1,6 +1,7 @@
-import { Card } from "antd";
+import Card from "antd/es/card/Card";
 import { CardTitle } from "./Cardtitle";
 import { Button } from "antd";
+import { useEffect, useState } from "react";
 
 interface Props {
     animals: Animal[];
@@ -9,6 +10,29 @@ interface Props {
 }
 
 export const Animals = ({ animals, handleDelete, handleOpen }: Props) => {
+
+    const [animalViews, setAnimalViews] = useState<AnimalView[]>([]);
+
+    useEffect(() => {
+        const fetchAnimalViews = async () => {
+            try {
+                const response = await fetch("https://localhost:7230/api/AnimalViews");
+                const data = await response.json();
+                setAnimalViews(data);
+            } catch (error) {
+                console.error("Error fetching animal views:", error);
+            }
+        };
+
+        fetchAnimalViews();
+    }, []);
+
+    const getAnimalViewTitle = (animalViewId: string) => {
+        const view = animalViews.find(v => v.id === animalViewId);
+        return view?.title || "Неизвестный вид";
+    };
+
+
     return (
         <div className="cards">
             {animals.map((animal: Animal) => (
@@ -17,13 +41,12 @@ export const Animals = ({ animals, handleDelete, handleOpen }: Props) => {
                     title={
                         <CardTitle
                             name={animal.name}
-                            weight={animal.weight}
-                            age={animal.age}
+                            animalViewTitle={getAnimalViewTitle(animal.animalViewId)}
                         />
                     }
                     variant="borderless"
                 >
-                    <p>{animal.isMale}</p>
+                    <p>{animal.isMale ? "Самец" : "Самка"}</p>
                     <p>{animal.distinctiveFeatures}</p>
                     <p>{animal.animalBreedId}</p>
                     <p>{animal.animalStatusId}</p>
@@ -33,14 +56,14 @@ export const Animals = ({ animals, handleDelete, handleOpen }: Props) => {
                     <div className="card__buttons">
                         <Button
                             onClick={() => handleOpen(animal)}
-                            style={{flex: 1}}
+                            style={{ flex: 1 }}
                         >
                             Редактировать
                         </Button>
-                        <Button 
+                        <Button
                             onClick={() => handleDelete(animal.id)}
                             danger
-                            style={{flex: 1}}
+                            style={{ flex: 1 }}
                         >
                             Удалить
                         </Button>

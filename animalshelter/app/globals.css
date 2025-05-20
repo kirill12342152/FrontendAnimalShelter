@@ -14,13 +14,23 @@
 }
 
 /* Стили для карточек */
-.cards {
+
+/* .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
   width: 100%;
   padding-top: 30px;
   gap: var(--card-gap);
+} */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  width: 100%;
+  padding-top: 30px;
+  gap: 30px 20px;
 }
+
 
 /* Стили цены */
 .card__price {
@@ -37,8 +47,8 @@
   margin-top: 20px;
 }
 
-/* Модальное окно книги */
-.book__modal {
+/* Модальное окно животного */
+.animal__modal {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -53,3 +63,4 @@
   word-break: break-word;
   font-size: 1.1rem;
 }
+

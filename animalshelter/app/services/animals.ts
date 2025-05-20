@@ -13,13 +13,13 @@ export interface AnimalRequest{
 // методы для взаимодействия с api
 
 export const getAllAnimals = async () => {
-    const response = await fetch("https://localhost:7230/Animals");
+    const response = await fetch("https://localhost:7230/api/Animals");
 
     return response.json();
 }
 
 export const createAnimal = async (animalRequest: AnimalRequest) => {
-    await fetch("https://localhost:7230/Animals", {
+    await fetch("https://localhost:7230/api/Animals", {
         method: "POST",
         headers: {
             "content-type": "application/json"
@@ -29,7 +29,7 @@ export const createAnimal = async (animalRequest: AnimalRequest) => {
 };
 
 export const updateAnimal = async (id: string, animalRequest: AnimalRequest) => {
-    await fetch(`https://localhost:7230/Animals/${id}`, {
+    await fetch(`https://localhost:7230/api/Animals/${id}`, {
         method: "PUT",
         headers: {
             "content-type": "application/json"
@@ -39,7 +39,7 @@ export const updateAnimal = async (id: string, animalRequest: AnimalRequest) => 
 }
 
 export const deleteAnimal = async (id: string) => {
-    await fetch(`https://localhost:7230/Animals/${id}`, {
+    await fetch(`https://localhost:7230/api/Animals/${id}`, {
         method: "DELETE",
     }); 
 }
