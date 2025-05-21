@@ -1,5 +1,6 @@
 export interface AnimalBreedsRequest{
     title: string;
+    animalViewId: string;
 }
 
 export const getAllAnimalBreeds = async () => {
