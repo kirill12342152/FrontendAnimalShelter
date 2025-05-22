@@ -1,10 +1,12 @@
 interface Props {
     name: string;
-    weight: number;
-    age: number;
+    // weight: number;
+    // age: number;
+    animalViewTitle?: string
+
 }
 
-export const CardTitle = ({ name, weight, age }: Props) => {
+export const CardTitleAnimal = ({ name, animalViewTitle }: Props) => {
     return (
         <div style={{
             display: "flex",
@@ -13,8 +15,8 @@ export const CardTitle = ({ name, weight, age }: Props) => {
             justifyContent: "space-between",
         }}>
             <p className="card__name">{name}</p>
-            <p className="card__weight">{weight}</p>
-            <p className="card__age">{age}</p>
+            {animalViewTitle && <p className="card__view">{animalViewTitle}</p>}
+
         </div>
     )
 }
