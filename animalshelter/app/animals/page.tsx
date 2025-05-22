@@ -70,18 +70,18 @@ export default function AnimalsPage() {
     };
 
     const openModal = () => {
-        setMode(Mode.Create); // Устанавливаем режим создания при открытии модального окна для нового животного
+        setMode(Mode.Create); 
         setIsModalOpen(true);
     };
 
     const closeModal = () => {
         setValues(defaultValues);
         setIsModalOpen(false);
-        setMode(Mode.Create); // Сбрасываем режим на создание при закрытии модального окна
+        setMode(Mode.Create); 
     };
 
     const openEditModal = (animal: Animal) => {
-        setMode(Mode.Edit); // Устанавливаем режим редактирования при открытии модального окна для существующего животного
+        setMode(Mode.Edit); 
         setValues(animal);
         setIsModalOpen(true);
     }
